@@ -1,9 +1,11 @@
 import React from 'react';
+import QuestionContainer from "./Components/QuestionContainer"
+
 
 function App() {
   return (
-    <div className="App">
-      hello
+    <div>
+<QuestionContainer/>
     </div>
   );
 }
