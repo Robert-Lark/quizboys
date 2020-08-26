@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
 import {connect} from 'react-redux'
 import { fetchUsers } from '../Redux'
+import Button from "@material-ui/core/Button";
+import { useStyles } from '../Styles/Styles'
+import CatagorySelector from './CatagorySelector';
 
 function UserContainer({data, fetchUsers }) {
+	const classes = useStyles();
     useEffect(() => {
         fetchUsers()
 
@@ -14,11 +18,11 @@ function UserContainer({data, fetchUsers }) {
 			<h2>{data.error}</h2>
 		) : (
 			<div>
-				<h2>Data List</h2>
+				<h2 className={classes.header}>TRIVIA TIME</h2>
+				<h3 className={classes.header}>Select Your Catagory</h3>
+				<CatagorySelector />
 				<div>
-					{data &&
-						data.data &&
-						data.data.map((data) => <p>{data.question}</p>)}
+					<p>{data.data.question}</p>
 				</div>
 			</div>
 		);

@@ -23,13 +23,18 @@ export const fetchDataFailure = (error) => {
 
 
 export const fetchUsers = () => {
+	
     return (dispatch) => {
         dispatch(fetchDataRequest());
                     axios
 					.get("https://opentdb.com/api.php?amount=50")
 					.then((response) => {
-						console.log(response.data);
-						const data = response.data.results;
+						const number0 = response.data.results
+						const number1 = Math.random()*number0.length;
+						let indexNumber = Math.floor(number1)
+						console.log(response.data.results[indexNumber]);
+						console.log(response.data.results);
+						const data = response.data.results[indexNumber];
 						dispatch(fetchDataSuccess(data));
 					})
 					.catch((error) => {
