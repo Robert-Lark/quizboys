@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {FETCH_USERS_REQUEST, FETCH_USERS_SUCCESS, FETCH_USERS_FAILURE } from "./userTypes";
+import {FETCH_USERS_REQUEST, FETCH_USERS_SUCCESS, FETCH_USERS_FAILURE } from "./dataTypes";
 
 export const fetchUsersRequest = () => {
 	return {

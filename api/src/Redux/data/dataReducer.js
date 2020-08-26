@@ -2,7 +2,7 @@ import {
 	FETCH_USERS_REQUEST,
 	FETCH_USERS_SUCCESS,
 	FETCH_USERS_FAILURE,
-} from "./userTypes";
+} from "./dataTypes";
 
 export const initialState = {
 	loading: false,
@@ -10,7 +10,7 @@ export const initialState = {
 	error: "",
 };
 
-const reducer = (state = initialState, action) => {
+const dataReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case FETCH_USERS_REQUEST:
 			return {
@@ -34,4 +34,4 @@ const reducer = (state = initialState, action) => {
 	}
 };
 
-export default reducer
+export default dataReducer
