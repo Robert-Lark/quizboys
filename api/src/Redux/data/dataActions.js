@@ -1,22 +1,22 @@
 import axios from 'axios'
-import {FETCH_USERS_REQUEST, FETCH_USERS_SUCCESS, FETCH_USERS_FAILURE } from "./dataTypes";
+import {FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE } from "./dataTypes";
 
-export const fetchUsersRequest = () => {
+export const fetchDataRequest = () => {
 	return {
-		type: FETCH_USERS_REQUEST,
+		type: FETCH_DATA_REQUEST,
 	};
 };
 
-export const fetchUsersSuccess = (users) => {
+export const fetchDataSuccess = (data) => {
 	return {
-		type: FETCH_USERS_SUCCESS,
-		payload: users,
+		type: FETCH_DATA_SUCCESS,
+		payload: data,
 	};
 };
 
-export const fetchUsersFailure = (error) => {
+export const fetchDataFailure = (error) => {
 	return {
-		type: FETCH_USERS_FAILURE,
+		type: FETCH_DATA_FAILURE,
 		payload: error,
 	};
 };
@@ -24,24 +24,17 @@ export const fetchUsersFailure = (error) => {
 
 export const fetchUsers = () => {
     return (dispatch) => {
-        dispatch(fetchUsersRequest());
-				//axios
-					// .get("https://jsonplaceholder.typicode.com/users")
-					// .then((response) => {
-					// 	console.log(response.data)
-					// 	const users = response.data;
-					// 	dispatch(fetchUsersSuccess(users));
-                    // })
+        dispatch(fetchDataRequest());
                     axios
 					.get("https://opentdb.com/api.php?amount=50")
 					.then((response) => {
-						console.log(response.data.results);
-						const users = response.data.results;
-						dispatch(fetchUsersSuccess(users));
+						console.log(response.data);
+						const data = response.data.results;
+						dispatch(fetchDataSuccess(data));
 					})
 					.catch((error) => {
 						const errorMsg = error.msg;
-						dispatch(fetchUsersFailure(errorMsg));
+						dispatch(fetchDataFailure(errorMsg));
 					});
     }
 }

@@ -1,32 +1,32 @@
 import {
-	FETCH_USERS_REQUEST,
-	FETCH_USERS_SUCCESS,
-	FETCH_USERS_FAILURE,
+	FETCH_DATA_REQUEST,
+	FETCH_DATA_SUCCESS,
+	FETCH_DATA_FAILURE,
 } from "./dataTypes";
 
 export const initialState = {
 	loading: false,
-	users: [],
+	data: [],
 	error: "",
 };
 
 const dataReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case FETCH_USERS_REQUEST:
+		case FETCH_DATA_REQUEST:
 			return {
 				...state,
 				loading: true,
 			};
-		case FETCH_USERS_SUCCESS:
+		case FETCH_DATA_SUCCESS:
 			return {
 				loading: false,
-				users: action.payload,
+				data: action.payload,
 				error: "",
 			};
-		case FETCH_USERS_FAILURE:
+		case FETCH_DATA_FAILURE:
 			return {
 				loading: false,
-				users: [],
+				data: [],
 				error: action.payload,
 			};
 		default:

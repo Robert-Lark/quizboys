@@ -3,7 +3,7 @@ import { combineReducers } from 'redux'
 
 
 const rootReducer = combineReducers({
-    user: dataReducer
+    data: dataReducer
 })
 
 export default rootReducer
