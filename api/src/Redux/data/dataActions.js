@@ -1,5 +1,8 @@
 import axios from 'axios'
-import {FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE } from "./dataTypes";
+
+export const FETCH_DATA_REQUEST = "FETCH_DATA_REQUEST";
+export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
+export const FETCH_DATA_FAILURE = "FETCH_DATA_FAILURE";
 
 export const fetchDataRequest = () => {
 	return {
@@ -29,11 +32,10 @@ export const fetchUsers = () => {
                     axios
 					.get("https://opentdb.com/api.php?amount=50")
 					.then((response) => {
+						console.log(response.data)
 						const number0 = response.data.results
 						const number1 = Math.random()*number0.length;
 						let indexNumber = Math.floor(number1)
-						console.log(response.data.results[indexNumber]);
-						console.log(response.data.results);
 						const data = response.data.results[indexNumber];
 						dispatch(fetchDataSuccess(data));
 					})
@@ -43,3 +45,19 @@ export const fetchUsers = () => {
 					});
     }
 }
+
+export const fetchCatagorySpecificQuestion = (category) => {
+	return (dispatch) => {
+		dispatch(fetchDataRequest());
+		axios
+			.get(`https://opentdb.com/api.php?amount=50&category=${category}`)
+			.then((response) => {
+				const data = response.data.results;
+				dispatch(fetchDataSuccess(data));
+			})
+			.catch((error) => {
+				const errorMsg = error.msg;
+				dispatch(fetchDataFailure(errorMsg));
+			});
+	};
+};
