@@ -7,29 +7,28 @@ import {
 import { useStyles } from "../Styles/Styles";
 import CatagorySelector from "./CatagorySelector";
 
-function QuestionContainer({
-	data,
-	fetchUsers,
-}, category) {
-
+function QuestionContainer(
+	{ data, fetchUsers, fetchCatagorySpecificQuestion, loading, error  },
+	category
+) {
 	const categorySelector = (e) => {
-		category = (e.target.value);
-		console.log(category)
+		e.preventDefault()
+		category = e.target.value;
+		fetchCatagorySpecificQuestion(category);
+		console.log(category);
 	};
-
 	const classes = useStyles();
-
 	useEffect(() => {
 		fetchUsers();
 	}, []);
-	useEffect(() => {
-		fetchCatagorySpecificQuestion(category);
-	}, []);
+	// useEffect(() => {
+	// 	fetchCatagorySpecificQuestion(category);
+	// }, []);
 
-	return data.loading ? (
+	return loading ? (
 		<h2>Loading</h2>
-	) : data.error ? (
-		<h2>{data.error}</h2>
+	) : error ? (
+		<h2>{error}</h2>
 	) : (
 		<div>
 			<h2 className={classes.header}>TRIVIA TIME</h2>
@@ -43,14 +42,15 @@ function QuestionContainer({
 }
 
 const mapStateToProps = (state) => {
-	return {
-		data: state.data,
-	};
+
+		return state
+
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		fetchUsers: () => dispatch(fetchUsers()),
+		fetchUsers,
+		fetchCatagorySpecificQuestion
 	};
 };
 
