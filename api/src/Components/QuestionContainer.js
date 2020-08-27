@@ -11,9 +11,7 @@ function QuestionContainer(
 	{ data, fetchUsers, fetchCatagorySpecificQuestion, loading, error  },
 	category
 ) {
-	const categorySelector = (e) => {
-		e.preventDefault()
-		category = e.target.value;
+	const categorySelector = (category) => {
 		fetchCatagorySpecificQuestion(category);
 		console.log(category);
 	};
@@ -21,9 +19,7 @@ function QuestionContainer(
 	useEffect(() => {
 		fetchUsers();
 	}, []);
-	// useEffect(() => {
-	// 	fetchCatagorySpecificQuestion(category);
-	// }, []);
+
 
 	return loading ? (
 		<h2>Loading</h2>
@@ -47,11 +43,9 @@ const mapStateToProps = (state) => {
 
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
+const mapDispatchToProps = {
 		fetchUsers,
 		fetchCatagorySpecificQuestion
-	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionContainer);
