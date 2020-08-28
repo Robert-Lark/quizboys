@@ -8,7 +8,7 @@ import dataReducer from "./Redux/data/dataReducer";
 import App from "./App"
 
 
-const store = createStore(dataReducer, applyMiddleware(thunk));
+const store = createStore(dataReducer, applyMiddleware(thunk, logger));
 
 
 ReactDOM.render(

@@ -2,11 +2,13 @@ import {
 	FETCH_DATA_REQUEST,
 	FETCH_DATA_SUCCESS,
 	FETCH_DATA_FAILURE,
+	FETCH_SINGULAR_DATA,
 } from "./dataActions";
 
 export const initialState = {
 	loading: false,
 	data: [],
+	singularData: [],
 	error: "",
 };
 
@@ -16,6 +18,13 @@ const dataReducer = (state = initialState, action) => {
 			return {
 				...state,
 				loading: true,
+			};
+		case FETCH_SINGULAR_DATA:
+			return {
+				loading: false,
+				data: [],
+				singularData: action.payload,
+				error: "",
 			};
 		case FETCH_DATA_SUCCESS:
 			return {

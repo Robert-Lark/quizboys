@@ -3,12 +3,20 @@ import axios from "axios";
 export const FETCH_DATA_REQUEST = "FETCH_DATA_REQUEST";
 export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
 export const FETCH_DATA_FAILURE = "FETCH_DATA_FAILURE";
+export const FETCH_SINGULAR_DATA = "FETCH_SINGULAR_DATA";
 
 export const fetchDataRequest = () => {
 	return {
 		type: FETCH_DATA_REQUEST,
 	};
 };
+
+export const fetchSingularData = (data) => {
+	return {
+		type: FETCH_SINGULAR_DATA,
+		payload: data,
+	};
+}
 
 export const fetchDataSuccess = (data) => {
 	return {
@@ -30,7 +38,6 @@ export const fetchUsers = () => {
 		axios
 			.get("https://opentdb.com/api.php?amount=50")
 			.then((response) => {
-				console.log(response.data);
 				const number0 = response.data.results;
 				const number1 = Math.random() * number0.length;
 				let indexNumber = Math.floor(number1);
@@ -45,20 +52,16 @@ export const fetchUsers = () => {
 };
 export const fetchCatagorySpecificQuestion = (category) => {
 	return (dispatch) => {
-		console.log("test");
 		dispatch(fetchDataRequest());
 		axios
 			.get(`https://opentdb.com/api.php?amount=50&category=${category}`)
 			.then((response) => {
 				const number0 = response.data.results;
-				console.log(number0);
 				const number1 = Math.random() * number0.length;
-				console.log(number1);
 				let indexNumber = Math.floor(number1);
-				console.log(indexNumber);
 				const data = response.data.results[indexNumber];
-				console.log(data);
 				dispatch(fetchDataSuccess(data));
+				//dispatch(fetchSingularData(data));
 			})
 			.catch((error) => {
 				const errorMsg = error.msg;
