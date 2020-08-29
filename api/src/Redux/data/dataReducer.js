@@ -3,13 +3,21 @@ import {
 	FETCH_DATA_SUCCESS,
 	FETCH_DATA_FAILURE,
 	FETCH_SINGULAR_DATA,
+	FETCH_ANSWER,
+	FETCH_INCORRECT_ANSWERS,
+	COLLATE_SCORE1,
+	COLLATE_SCORE0,
 } from "./dataActions";
 
 export const initialState = {
 	loading: false,
 	data: [],
-	singularData: [],
+	singularData: null,
+	answer: [],
+	incorrectAnswers: [],
 	error: "",
+	display: false,
+	points: 0,
 };
 
 const dataReducer = (state = initialState, action) => {
@@ -21,26 +29,51 @@ const dataReducer = (state = initialState, action) => {
 			};
 		case FETCH_SINGULAR_DATA:
 			return {
+				...state,
 				loading: false,
-				data: [],
 				singularData: action.payload,
 				error: "",
+				display: true,
+			};
+		case FETCH_ANSWER:
+			return {
+				...state,
+				answer: [action.payload],
+			};
+		case FETCH_INCORRECT_ANSWERS:
+			return {
+				...state,
+				incorrectAnswers: [action.payload],
 			};
 		case FETCH_DATA_SUCCESS:
 			return {
+				...state,
 				loading: false,
 				data: action.payload,
 				error: "",
 			};
 		case FETCH_DATA_FAILURE:
 			return {
+				...state,
 				loading: false,
 				data: [],
 				error: action.payload,
+			};
+		case COLLATE_SCORE0:
+			return {
+				...state,
+				points: state.points - 1,
+				singularData: null,
+			};
+		case COLLATE_SCORE1:
+			return {
+				...state,
+				points: state.points + 1,
+				singularData: null,
 			};
 		default:
 			return state;
 	}
 };
 
-export default dataReducer
+export default dataReducer;

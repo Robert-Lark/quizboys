@@ -1,12 +1,9 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { fetchCatagorySpecificQuestion } from "../Redux/data/dataActions";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { useStyles } from "../Styles/Styles";
 
 function CatagorySelector(props) {
-	const dispatch = useDispatch();
 	const classes = useStyles();
 	return (
 		<Grid container className={classes.buttonContainer}>

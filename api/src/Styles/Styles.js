@@ -42,4 +42,11 @@ export const useStyles = makeStyles({
 		display: "flex",
 		justifyContent: "center",
 	},
+	show: {
+		transition: "opacity 5s",
+		opacity: "1",
+	},
+	hide: {
+opacity: "0",
+	},
 });

@@ -4,6 +4,10 @@ export const FETCH_DATA_REQUEST = "FETCH_DATA_REQUEST";
 export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
 export const FETCH_DATA_FAILURE = "FETCH_DATA_FAILURE";
 export const FETCH_SINGULAR_DATA = "FETCH_SINGULAR_DATA";
+export const COLLATE_SCORE0 = "COLLATE_SCORE0";
+export const COLLATE_SCORE1 = "COLLATE_SCORE1";
+export const FETCH_ANSWER = "FETCH_ANSWERS";
+export const FETCH_INCORRECT_ANSWERS = "FETCH_INCORRECT_ANSWERS";
 
 export const fetchDataRequest = () => {
 	return {
@@ -16,7 +20,20 @@ export const fetchSingularData = (data) => {
 		type: FETCH_SINGULAR_DATA,
 		payload: data,
 	};
-}
+};
+
+export const fetchAnswer = (correct) => {
+	return {
+		type: FETCH_ANSWER,
+		payload: correct,
+	};
+};
+export const fetchIncorrectAnswers = (incorrect) => {
+	return {
+		type: FETCH_INCORRECT_ANSWERS,
+		payload: incorrect,
+	};
+};
 
 export const fetchDataSuccess = (data) => {
 	return {
@@ -61,11 +78,24 @@ export const fetchCatagorySpecificQuestion = (category) => {
 				let indexNumber = Math.floor(number1);
 				const data = response.data.results[indexNumber];
 				dispatch(fetchDataSuccess(data));
-				//dispatch(fetchSingularData(data));
+				dispatch(fetchSingularData(data));
+				dispatch(fetchAnswer(data.correct_answer));
+				dispatch(fetchIncorrectAnswers(data.incorrect_answers));
 			})
 			.catch((error) => {
 				const errorMsg = error.msg;
 				dispatch(fetchDataFailure(errorMsg));
 			});
+	};
+};
+
+export const collateScore0 = () => {
+	return {
+		type: COLLATE_SCORE0,
+	};
+};
+export const collateScore1 = () => {
+	return {
+		type: COLLATE_SCORE1,
 	};
 };
