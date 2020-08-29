@@ -13,7 +13,7 @@ export const initialState = {
 	loading: false,
 	data: [],
 	singularData: null,
-	answer: [],
+	answer: null,
 	incorrectAnswers: [],
 	error: "",
 	display: false,
@@ -38,12 +38,12 @@ const dataReducer = (state = initialState, action) => {
 		case FETCH_ANSWER:
 			return {
 				...state,
-				answer: [action.payload],
+				answer: action.payload,
 			};
 		case FETCH_INCORRECT_ANSWERS:
 			return {
 				...state,
-				incorrectAnswers: [action.payload],
+				incorrectAnswers: action.payload,
 			};
 		case FETCH_DATA_SUCCESS:
 			return {

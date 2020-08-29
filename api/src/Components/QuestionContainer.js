@@ -15,7 +15,6 @@ import Button from "@material-ui/core/Button";
 
 function QuestionContainer({
 	data,
-	fetchUsers,
 	fetchCatagorySpecificQuestion,
 	loading,
 	error,
@@ -34,16 +33,15 @@ function QuestionContainer({
 	const classes = useStyles();
 
 	const score = (e) => {
-		console.log(e.target.value)
-		if (e.target.value === answer) {
+		console.log(e.target.id)
+		if (e.target.id === answer) {
 			collateScore1();
 		} else {
 			collateScore0();
 		}
 	}
 	let answers = [incorrectAnswers, answer].sort(function () {
-		return 0.5 - Math.random();
-	});
+		return 0.5 - Math.random()})
 	console.log(answers);
 	function createMarkupQuestion(text) {
 		return { __html: text };
@@ -70,7 +68,7 @@ function QuestionContainer({
 					<Paper className={display ? classes.show : classes.hide}>
 						<Grid item className={classes.answerHeader}>
 							{answers.map((answers) => (
-								<Button value={answers} onClick={score} className={classes.buttons}>
+								<Button id={answers} onClick={score} className={classes.buttons}>
 									<div
 										dangerouslySetInnerHTML={createMarkupQuestion(answers)}
 									></div>
