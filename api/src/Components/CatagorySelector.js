@@ -46,13 +46,13 @@ function CatagorySelector(props) {
 				>
 					Music
 				</Button>
-				<Button
+				{/* <Button
 					onClick={() => props.categorySelector("13")}
 					value="13"
 					className={classes.buttons}
 				>
 					Musicals & Theatre
-				</Button>
+				</Button> */}
 				<Button
 					onClick={() => props.categorySelector("14")}
 					value="14"

@@ -71,7 +71,7 @@ export const fetchCatagorySpecificQuestion = (category) => {
 	return (dispatch) => {
 		dispatch(fetchDataRequest());
 		axios
-			.get(`https://opentdb.com/api.php?amount=50&category=${category}`)
+			.get(`https://opentdb.com/api.php?amount=27&category=${category}`)
 			.then((response) => {
 				const number0 = response.data.results;
 				const number1 = Math.random() * number0.length;

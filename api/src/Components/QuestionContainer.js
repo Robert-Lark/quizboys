@@ -32,17 +32,15 @@ function QuestionContainer({
 
 	const classes = useStyles();
 
-	const score = (e) => {
-		console.log(e.target.id)
-		if (e.target.id === answer) {
+	const score = (correct) => {
+		if (correct === answer) {
 			collateScore1();
 		} else {
 			collateScore0();
 		}
 	}
-	let answers = [incorrectAnswers, answer].sort(function () {
+	let answers = [...incorrectAnswers, answer].sort(function () {
 		return 0.5 - Math.random()})
-	console.log(answers);
 	function createMarkupQuestion(text) {
 		return { __html: text };
 	}
@@ -67,21 +65,13 @@ function QuestionContainer({
 				<Grid container className={classes.buttonContainer2}>
 					<Paper className={display ? classes.show : classes.hide}>
 						<Grid item className={classes.answerHeader}>
-							{answers.map((answers) => (
-								<Button id={answers} onClick={score} className={classes.buttons}>
+							{answers.map((answer) => (
+								<Button onClick={() => score(answer)} className={classes.buttons}>
 									<div
-										dangerouslySetInnerHTML={createMarkupQuestion(answers)}
+										dangerouslySetInnerHTML={createMarkupQuestion(answer)}
 									></div>
 								</Button>
 							))}
-							{singularData.incorrect_answers.map((incorrect) =>
-								console.log(incorrect)
-								// <Button onClick={incorrect} className={classes.buttons}>
-								// 	<div
-								// 		dangerouslySetInnerHTML={createMarkupQuestion(incorrect)}
-								// 	></div>
-								// </Button>
-							)}
 						</Grid>
 					</Paper>
 				</Grid>
