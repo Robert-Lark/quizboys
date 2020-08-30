@@ -50,7 +50,7 @@ function QuestionContainer({
 		<h2>{error}</h2>
 	) : singularData ? (
 		<div>
-			<h2 className={classes.header}>TRIVIA TIME</h2>
+			<h2 className={classes.header}>QUIZBOYS!!!</h2>
 			<CatagorySelector categorySelector={categorySelector} />
 			<Grid container className={classes.questionContainer}>
 				<Paper className={classes.question}>
@@ -79,7 +79,7 @@ function QuestionContainer({
 		</div>
 	) : data ? (
 		<div>
-			<h2 className={classes.header}>TRIVIA TIME</h2>
+						<h2 className={classes.header}>QUIZBOYS!!!</h2>
 
 			<CatagorySelector categorySelector={categorySelector} />
 			<div>Your Score: {points}</div>

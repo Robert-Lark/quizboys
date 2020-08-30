@@ -8,7 +8,7 @@ function CatagorySelector(props) {
 	return (
 		<Grid container className={classes.buttonContainer}>
 			<Grid item className={classes.buttonHeader}>
-				<h3>Choose your Category</h3>
+				<h3 className={classes.header}>Choose your Category</h3>
 			</Grid>
 			<Grid item className={classes.buttonItem}>
 				<Button

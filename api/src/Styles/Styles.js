@@ -1,11 +1,19 @@
 import { makeStyles } from "@material-ui/core/styles";
+import quizboys from './quizboys.jpg'
 
 export const useStyles = makeStyles({
+	home: {
+		backgroundImage: `url(${quizboys})`,
+		backgroundRepeat: "no-repeat",
+		height: "100vh",
+	},
 	centerText: {
 		width: "100%",
 		textAlign: "center",
 	},
 	header: {
+		color: "white",
+		fontSize: "3rem",
 		display: "flex",
 		justifyContent: "center",
 	},
