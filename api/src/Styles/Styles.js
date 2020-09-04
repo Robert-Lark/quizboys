@@ -13,6 +13,7 @@ export const useStyles = makeStyles({
 		backgroundRepeat: "no-repeat",
 		backgroundSize: "cover",
 		height: "100vh",
+		width: "100vw",
 	},
 	centerText: {
 		width: "100%",

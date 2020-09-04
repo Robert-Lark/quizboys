@@ -52,6 +52,8 @@ function Scorecard({ points, correctAnswer, answer, display, props }) {
                             color="textSecondary"
                             gutterBottom
                         >
+                            <br>
+                            </br>
                             OOOH, UNFORTUNATELY THE CORRECT ANSWER WAS
                         </Typography>
                         <Typography
