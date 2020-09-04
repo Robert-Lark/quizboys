@@ -8,6 +8,8 @@ export const COLLATE_SCORE0 = "COLLATE_SCORE0";
 export const COLLATE_SCORE1 = "COLLATE_SCORE1";
 export const FETCH_ANSWER = "FETCH_ANSWERS";
 export const FETCH_INCORRECT_ANSWERS = "FETCH_INCORRECT_ANSWERS";
+export const CORRECT_ANSWER = "CORRECT_ANSWER"
+export const WRONG_ANSWER = "WRONG_ANSWER"
 
 export const fetchDataRequest = () => {
 	return {
@@ -99,3 +101,14 @@ export const collateScore1 = () => {
 		type: COLLATE_SCORE1,
 	};
 };
+
+export const correctAnswer = () => {
+	return {
+		type: CORRECT_ANSWER
+	}
+}
+export const wrongAnswer = () => {
+	return {
+		type: WRONG_ANSWER
+	}
+}

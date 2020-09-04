@@ -1,10 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
+import Scorecard from './Scorecard';
 import {
 	fetchUsers,
 	fetchCatagorySpecificQuestion,
 	collateScore0,
 	collateScore1,
+	correctAnswer,
+	wrongAnswer
 } from "../Redux/data/dataActions";
 import { useStyles } from "../Styles/Styles";
 import Paper from "@material-ui/core/Paper";
@@ -25,18 +28,21 @@ function QuestionContainer({
 	collateScore0,
 	collateScore1,
 	points,
+	correctAnswer,
+	wrongAnswer
 }) {
 	const categorySelector = (category) => {
 		fetchCatagorySpecificQuestion(category);
 	};
-
 	const classes = useStyles();
 
 	const score = (correct) => {
 		if (correct === answer) {
 			collateScore1();
+			correctAnswer()
 		} else {
 			collateScore0();
+			wrongAnswer()
 		}
 	}
 	let answers = [...incorrectAnswers, answer].sort(function () {
@@ -45,13 +51,11 @@ function QuestionContainer({
 		return { __html: text };
 	}
 	return loading ? (
-		<h2 className={classes.centerText}>Loading</h2>
-	) : error ? (
-		<h2>{error}</h2>
+		<h2 className={classes.loading}>Loading</h2>
 	) : singularData ? (
 		<div>
-			<h2 className={classes.header}>QUIZBOYS!!!</h2>
-			<CatagorySelector categorySelector={categorySelector} />
+			{/* <h2 className={classes.mainHeader}>QUIZBOYS!!!</h2>
+			<CatagorySelector categorySelector={categorySelector} /> */}
 			<Grid container className={classes.questionContainer}>
 				<Paper className={classes.question}>
 					<Typography variant="h5" className={classes.question}>
@@ -63,7 +67,7 @@ function QuestionContainer({
 					</Typography>
 				</Paper>
 				<Grid container className={classes.buttonContainer2}>
-					<Paper className={display ? classes.show : classes.hide}>
+						<Paper className={classes.answerHeader}>
 						<Grid item className={classes.answerHeader}>
 							{answers.map((answer) => (
 								<Button onClick={() => score(answer)} className={classes.buttons}>
@@ -75,14 +79,14 @@ function QuestionContainer({
 						</Grid>
 					</Paper>
 				</Grid>
+				
 			</Grid>
 		</div>
 	) : data ? (
 		<div>
-						<h2 className={classes.header}>QUIZBOYS!!!</h2>
-
+					<h2 className={classes.mainHeader}>QUIZBOYS!!!</h2>
 			<CatagorySelector categorySelector={categorySelector} />
-			<div>Your Score: {points}</div>
+					<Scorecard />
 		</div>
 	) : (
 		<p>ERROR</p>
@@ -98,6 +102,8 @@ const mapDispatchToProps = {
 	fetchCatagorySpecificQuestion,
 	collateScore0,
 	collateScore1,
+	correctAnswer,
+	wrongAnswer
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionContainer);

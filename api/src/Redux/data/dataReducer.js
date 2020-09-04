@@ -7,6 +7,8 @@ import {
 	FETCH_INCORRECT_ANSWERS,
 	COLLATE_SCORE1,
 	COLLATE_SCORE0,
+	CORRECT_ANSWER,
+	WRONG_ANSWER
 } from "./dataActions";
 
 export const initialState = {
@@ -16,8 +18,9 @@ export const initialState = {
 	answer: null,
 	incorrectAnswers: [],
 	error: "",
-	display: false,
+	display: true,
 	points: 0,
+	correctAnswer: false,
 };
 
 const dataReducer = (state = initialState, action) => {
@@ -71,6 +74,18 @@ const dataReducer = (state = initialState, action) => {
 				points: state.points + 1,
 				singularData: null,
 			};
+		case CORRECT_ANSWER: 
+		return {
+			...state,
+			correctAnswer: true
+		}
+		case WRONG_ANSWER:
+			return {
+				...state,
+				correctAnswer: false,
+				display: false
+			}
+			
 		default:
 			return state;
 	}
